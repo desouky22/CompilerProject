@@ -1,10 +1,10 @@
 using System;
-namespace CodeForCompiler
+namespace CompilerProject
 {
-    public class Trie
+    public class DFA
     {
         private static Node root;
-        public Trie()
+        public DFA()
         {
             root = new Node('\0');
         }

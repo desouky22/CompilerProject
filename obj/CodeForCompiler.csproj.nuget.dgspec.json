@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\cSharpProjects\\CodeForCompiler\\CodeForCompiler.csproj": {}
+    "D:\\MohammedElSaeed\\CompilerProject\\CodeForCompiler.csproj": {}
   },
   "projects": {
-    "D:\\cSharpProjects\\CodeForCompiler\\CodeForCompiler.csproj": {
+    "D:\\MohammedElSaeed\\CompilerProject\\CodeForCompiler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\cSharpProjects\\CodeForCompiler\\CodeForCompiler.csproj",
+        "projectUniqueName": "D:\\MohammedElSaeed\\CompilerProject\\CodeForCompiler.csproj",
         "projectName": "CodeForCompiler",
-        "projectPath": "D:\\cSharpProjects\\CodeForCompiler\\CodeForCompiler.csproj",
+        "projectPath": "D:\\MohammedElSaeed\\CompilerProject\\CodeForCompiler.csproj",
         "packagesPath": "C:\\Users\\3m\\.nuget\\packages\\",
-        "outputPath": "D:\\cSharpProjects\\CodeForCompiler\\obj\\",
+        "outputPath": "D:\\MohammedElSaeed\\CompilerProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\3m\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
