@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MohammedElSaeed\\CompilerProject\\CodeForCompiler.csproj",
+      "projectUniqueName": "D:\\Projects\\CompilerProject\\CodeForCompiler.csproj",
       "projectName": "CodeForCompiler",
-      "projectPath": "D:\\MohammedElSaeed\\CompilerProject\\CodeForCompiler.csproj",
+      "projectPath": "D:\\Projects\\CompilerProject\\CodeForCompiler.csproj",
       "packagesPath": "C:\\Users\\3m\\.nuget\\packages\\",
-      "outputPath": "D:\\MohammedElSaeed\\CompilerProject\\obj\\",
+      "outputPath": "D:\\Projects\\CompilerProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\3m\\AppData\\Roaming\\NuGet\\NuGet.Config",

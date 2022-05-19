@@ -8,6 +8,17 @@ namespace CompilerProject
     {
         public static DFA dfa = new DFA();
         private static Dictionary<string, string> tokensReturn = new Dictionary<string, string>();
+        private static Dictionary<Tuple<int, char>, int> transTable = new Dictionary<Tuple<int, char>, int>();
+
+        public static void BuildingTransTable()
+        {
+            transTable[new Tuple<int, char>(1, 'C')] = 26;
+            transTable[new Tuple<int, char>(1, 'D')] = 2;
+
+        }
+
+
+
         static void Init()
         {
             tokensReturn["Category"] = "Class";

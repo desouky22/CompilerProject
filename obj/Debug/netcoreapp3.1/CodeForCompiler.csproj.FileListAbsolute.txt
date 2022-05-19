@@ -40,3 +40,17 @@ D:\MohammedElSaeed\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.cspro
 D:\MohammedElSaeed\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.dll
 D:\MohammedElSaeed\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.pdb
 D:\MohammedElSaeed\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.genruntimeconfig.cache
+D:\Projects\CompilerProject\bin\Debug\netcoreapp3.1\CodeForCompiler.exe
+D:\Projects\CompilerProject\bin\Debug\netcoreapp3.1\CodeForCompiler.deps.json
+D:\Projects\CompilerProject\bin\Debug\netcoreapp3.1\CodeForCompiler.runtimeconfig.json
+D:\Projects\CompilerProject\bin\Debug\netcoreapp3.1\CodeForCompiler.runtimeconfig.dev.json
+D:\Projects\CompilerProject\bin\Debug\netcoreapp3.1\CodeForCompiler.dll
+D:\Projects\CompilerProject\bin\Debug\netcoreapp3.1\CodeForCompiler.pdb
+D:\Projects\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.csproj.AssemblyReference.cache
+D:\Projects\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.AssemblyInfoInputs.cache
+D:\Projects\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.AssemblyInfo.cs
+D:\Projects\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.csproj.CoreCompileInputs.cache
+D:\Projects\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.dll
+D:\Projects\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.pdb
+D:\Projects\CompilerProject\obj\Debug\netcoreapp3.1\CodeForCompiler.genruntimeconfig.cache
