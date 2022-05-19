@@ -1,0 +1,14 @@
+D:\cSharpProjects\CodeForCompiler\bin\Debug\netcoreapp3.1\CodeForCompiler.exe
+D:\cSharpProjects\CodeForCompiler\bin\Debug\netcoreapp3.1\CodeForCompiler.deps.json
+D:\cSharpProjects\CodeForCompiler\bin\Debug\netcoreapp3.1\CodeForCompiler.runtimeconfig.json
+D:\cSharpProjects\CodeForCompiler\bin\Debug\netcoreapp3.1\CodeForCompiler.runtimeconfig.dev.json
+D:\cSharpProjects\CodeForCompiler\bin\Debug\netcoreapp3.1\CodeForCompiler.dll
+D:\cSharpProjects\CodeForCompiler\bin\Debug\netcoreapp3.1\CodeForCompiler.pdb
+D:\cSharpProjects\CodeForCompiler\obj\Debug\netcoreapp3.1\CodeForCompiler.csproj.AssemblyReference.cache
+D:\cSharpProjects\CodeForCompiler\obj\Debug\netcoreapp3.1\CodeForCompiler.GeneratedMSBuildEditorConfig.editorconfig
+D:\cSharpProjects\CodeForCompiler\obj\Debug\netcoreapp3.1\CodeForCompiler.AssemblyInfoInputs.cache
+D:\cSharpProjects\CodeForCompiler\obj\Debug\netcoreapp3.1\CodeForCompiler.AssemblyInfo.cs
+D:\cSharpProjects\CodeForCompiler\obj\Debug\netcoreapp3.1\CodeForCompiler.csproj.CoreCompileInputs.cache
+D:\cSharpProjects\CodeForCompiler\obj\Debug\netcoreapp3.1\CodeForCompiler.dll
+D:\cSharpProjects\CodeForCompiler\obj\Debug\netcoreapp3.1\CodeForCompiler.pdb
+D:\cSharpProjects\CodeForCompiler\obj\Debug\netcoreapp3.1\CodeForCompiler.genruntimeconfig.cache
