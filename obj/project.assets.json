@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\3m\\.nuget\\packages\\": {}
+    "C:\\Users\\desit\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
+      "projectUniqueName": "C:\\Users\\desit\\Desktop\\CompilerProject\\CompilerWithTrie.csproj",
       "projectName": "CompilerWithTrie",
-      "projectPath": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
-      "packagesPath": "C:\\Users\\3m\\.nuget\\packages\\",
-      "outputPath": "D:\\CompilerWithTrie\\obj\\",
+      "projectPath": "C:\\Users\\desit\\Desktop\\CompilerProject\\CompilerWithTrie.csproj",
+      "packagesPath": "C:\\Users\\desit\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\desit\\Desktop\\CompilerProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\3m\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\desit\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

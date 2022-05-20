@@ -117,6 +117,7 @@ namespace CompilerWithTrie
                 {
                     multiComment--;
                     CorrectTokens(numberOfLine, tokens[x], "Comment");
+                    GoCheckLine(tokens, x + 1, endIndex, numberOfLine);
                     return;
                 }
                 CorrectTokens(numberOfLine, tokens[x], "Comment");
