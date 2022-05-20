@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CompilerWithTrie\\CompilerWithTrie.csproj": {}
+    "D:\\Projects\\CompilerProject\\CompilerWithTrie.csproj": {}
   },
   "projects": {
-    "D:\\CompilerWithTrie\\CompilerWithTrie.csproj": {
+    "D:\\Projects\\CompilerProject\\CompilerWithTrie.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
+        "projectUniqueName": "D:\\Projects\\CompilerProject\\CompilerWithTrie.csproj",
         "projectName": "CompilerWithTrie",
-        "projectPath": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
+        "projectPath": "D:\\Projects\\CompilerProject\\CompilerWithTrie.csproj",
         "packagesPath": "C:\\Users\\3m\\.nuget\\packages\\",
-        "outputPath": "D:\\CompilerWithTrie\\obj\\",
+        "outputPath": "D:\\Projects\\CompilerProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\3m\\AppData\\Roaming\\NuGet\\NuGet.Config",

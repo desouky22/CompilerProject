@@ -3,14 +3,13 @@ namespace CompilerWithTrie
     public class RunScanner
     {
         private static int multiComment = 0;
-        private const int MAX = 54;
+        private const int MAX = 55;
         private static string[] KeyWords = new string[MAX];
         private static string[] ReturnToken = new string[MAX];
         public static int numberOfErrors = 0;
         public static DFA dfa = new DFA();
 
         private static void DefineKeywords()
-
         {
             KeyWords[0] = "Category"; ReturnToken[0] = "Class";
             KeyWords[1] = "Derive"; ReturnToken[1] = "Inheritance";
@@ -29,7 +28,7 @@ namespace CompilerWithTrie
             KeyWords[14] = "Seop"; ReturnToken[14] = "Struct";
             KeyWords[15] = "Check"; ReturnToken[15] = "Switch";
             KeyWords[16] = "situationof"; ReturnToken[16] = "Switch";
-            KeyWords[17] = "Program"; ReturnToken[17] = "Stat Statement";
+            KeyWords[17] = "Program"; ReturnToken[17] = "Start Statement";
             KeyWords[18] = "End"; ReturnToken[18] = "End Statement";
             KeyWords[19] = "+"; ReturnToken[19] = "Arithmetic Operation";
             KeyWords[20] = "-"; ReturnToken[20] = "Arithmetic Operation";
@@ -66,6 +65,7 @@ namespace CompilerWithTrie
             KeyWords[51] = "("; ReturnToken[51] = "Braces";
             KeyWords[52] = ")"; ReturnToken[52] = "Braces";
             KeyWords[53] = "--"; ReturnToken[53] = "Comment";
+            KeyWords[54] = ";"; ReturnToken[54] = "SemiColon";
         }
 
         private static void BuildingDFA()
@@ -74,12 +74,6 @@ namespace CompilerWithTrie
             {
                 dfa.AddTransition(KeyWords[i], ReturnToken[i]);
             }
-        }
-
-        public RunScanner()
-        {
-            DefineKeywords();
-            BuildingDFA();
         }
 
         private static string[] SplitLine(string data, ref int size)
@@ -117,6 +111,7 @@ namespace CompilerWithTrie
                 {
                     multiComment--;
                     CorrectTokens(numberOfLine, tokens[x], "Comment");
+                    GoCheckLine(tokens, x + 1, endIndex, numberOfLine);
                     return;
                 }
                 CorrectTokens(numberOfLine, tokens[x], "Comment");
@@ -143,11 +138,7 @@ namespace CompilerWithTrie
                 if (tokens[index] == "--" || isComment)
                 {
                     isComment = true;
-
-
                     CorrectTokens(numberOfLine, tokens[index], "Comment");
-
-
                 }
                 else if (Token == "-1")
                 {
@@ -181,6 +172,9 @@ namespace CompilerWithTrie
         }
         public static List<string> RUN(string input)
         {
+            DefineKeywords();
+            BuildingDFA();
+
             int LineNumber = 1;
             List<string> lines = new List<string>();
             string s = "";
@@ -200,6 +194,9 @@ namespace CompilerWithTrie
                 CheckLine(line, 0, LineNumber);
                 ++LineNumber;
             }
+            string errors = "Total Number of ERORRS: " + numberOfErrors;
+            output.Add(errors);
+
             return output;
         }
     }

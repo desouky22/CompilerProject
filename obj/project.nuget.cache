@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "S3r/d4MgTFKxetRlvldCpUNEnjuMzzpFtUzc/Ijy0wBkapslaxt7SjtuSB7IiRDoepNd56gLD3MV7Lr4kyCe9A==",
+  "dgSpecHash": "aoxu4fEom3paM/yUpo7kCvBd2vPkCVV+MaeBHQDCrpukoTigbmqfPfeoP9x2YhIlMT0x1HagOWo6cV803Nle3w==",
   "success": true,
-  "projectFilePath": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
+  "projectFilePath": "D:\\Projects\\CompilerProject\\CompilerWithTrie.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
