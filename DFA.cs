@@ -63,13 +63,13 @@ namespace CompilerWithTrie
             {
                 return node.tokenDefinition;
             }
-           
+
             if (IsConstant(word))
                 return "Constant";
-            else if (IsError(word) && word[word.Length-1] != ';')
+            else if (IsError(word) && word[word.Length - 1] != ';')
                 return "-1";
             return "identifier";
-            
+
         }
 
         private static Node GetNode(string word)

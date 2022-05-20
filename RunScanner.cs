@@ -114,14 +114,15 @@ namespace CompilerWithTrie
 
         public static List<string> output = new List<string>();
 
-        public void GoMultiComment(string[] tokens, int startIndex, int endIndex, int numberOfLine) 
+        public void GoMultiComment(string[] tokens, int startIndex, int endIndex, int numberOfLine)
         {
-            for(int x = startIndex; x<endIndex; x++)
+            for (int x = startIndex; x < endIndex; x++)
             {
                 if (tokens[x] == "*>")
                 {
                     multiComment--;
                     CorrectTokens(numberOfLine, tokens[x], "Comment");
+                    GoCheckLine(tokens, x + 1, endIndex, numberOfLine);
                     return;
                 }
                 CorrectTokens(numberOfLine, tokens[x], "Comment");
@@ -130,7 +131,7 @@ namespace CompilerWithTrie
 
         public void GoCheckLine(string[] tokens, int startIndex, int endIndex, int numberOfLine)
         {
-            if(multiComment > 0)
+            if (multiComment > 0)
             {
                 GoMultiComment(tokens, startIndex, endIndex, numberOfLine);
                 return;
@@ -148,11 +149,11 @@ namespace CompilerWithTrie
                 if (tokens[index] == "--" || isComment)
                 {
                     isComment = true;
-                    
-                    
+
+
                     CorrectTokens(numberOfLine, tokens[index], "Comment");
 
-                    
+
                 }
                 else if (Token == "-1")
                 {
@@ -170,7 +171,7 @@ namespace CompilerWithTrie
         {
             int size = 0;
             var tokens = SplitLine(line, ref size);
-            GoCheckLine(tokens, 0,size,numberOfLine);
+            GoCheckLine(tokens, 0, size, numberOfLine);
         }
 
         private void CorrectTokens(int numberOfLine, string TokenText, string TokenType)
