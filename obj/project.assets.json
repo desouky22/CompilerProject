@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\CompilerProject\\CompilerWithTrie.csproj",
+      "projectUniqueName": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
       "projectName": "CompilerWithTrie",
-      "projectPath": "D:\\Projects\\CompilerProject\\CompilerWithTrie.csproj",
+      "projectPath": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
       "packagesPath": "C:\\Users\\3m\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\CompilerProject\\obj\\",
+      "outputPath": "D:\\CompilerWithTrie\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\3m\\AppData\\Roaming\\NuGet\\NuGet.Config",

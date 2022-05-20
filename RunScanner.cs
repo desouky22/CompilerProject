@@ -2,14 +2,14 @@ namespace CompilerWithTrie
 {
     public class RunScanner
     {
-        private int multiComment = 0;
+        private static int multiComment = 0;
         private const int MAX = 54;
-        private string[] KeyWords = new string[MAX];
-        private string[] ReturnToken = new string[MAX];
-        public int numberOfErrors = 0;
-        public DFA dfa = new DFA();
+        private static string[] KeyWords = new string[MAX];
+        private static string[] ReturnToken = new string[MAX];
+        public static int numberOfErrors = 0;
+        public static DFA dfa = new DFA();
 
-        private void DefineKeywords()
+        private static void DefineKeywords()
 
         {
             KeyWords[0] = "Category"; ReturnToken[0] = "Class";
@@ -68,7 +68,7 @@ namespace CompilerWithTrie
             KeyWords[53] = "--"; ReturnToken[53] = "Comment";
         }
 
-        private void BuildingDFA()
+        private static void BuildingDFA()
         {
             for (int i = 0; i < MAX; i++)
             {
@@ -82,11 +82,6 @@ namespace CompilerWithTrie
             BuildingDFA();
         }
 
-        public static bool IsWhiteSpace(char c)
-        {
-            return c == ' ' || c == '\t';
-        }
-
         private static string[] SplitLine(string data, ref int size)
         {
             string[] tokens = new string[20];
@@ -94,7 +89,7 @@ namespace CompilerWithTrie
             string currentData = "";
             foreach (var c in data)
             {
-                if (IsWhiteSpace(c))
+                if (Char.IsWhiteSpace(c))
                 {
                     if (String.IsNullOrEmpty(currentData)) continue;
                     tokens[size++] = currentData;
@@ -114,7 +109,7 @@ namespace CompilerWithTrie
 
         public static List<string> output = new List<string>();
 
-        public void GoMultiComment(string[] tokens, int startIndex, int endIndex, int numberOfLine)
+        public static void GoMultiComment(string[] tokens, int startIndex, int endIndex, int numberOfLine)
         {
             for (int x = startIndex; x < endIndex; x++)
             {
@@ -122,14 +117,13 @@ namespace CompilerWithTrie
                 {
                     multiComment--;
                     CorrectTokens(numberOfLine, tokens[x], "Comment");
-                    GoCheckLine(tokens, x + 1, endIndex, numberOfLine);
                     return;
                 }
                 CorrectTokens(numberOfLine, tokens[x], "Comment");
             }
         }
 
-        public void GoCheckLine(string[] tokens, int startIndex, int endIndex, int numberOfLine)
+        public static void GoCheckLine(string[] tokens, int startIndex, int endIndex, int numberOfLine)
         {
             if (multiComment > 0)
             {
@@ -167,23 +161,46 @@ namespace CompilerWithTrie
             }
         }
 
-        public void CheckLine(string line, int startIndex, int numberOfLine)
+        public static void CheckLine(string line, int startIndex, int numberOfLine)
         {
             int size = 0;
             var tokens = SplitLine(line, ref size);
             GoCheckLine(tokens, 0, size, numberOfLine);
         }
 
-        private void CorrectTokens(int numberOfLine, string TokenText, string TokenType)
+        private static void CorrectTokens(int numberOfLine, string TokenText, string TokenType)
         {
             string lineOfOutput = $"Line: {numberOfLine}   Token Text: {TokenText}   Token Type: {TokenType}";
             output.Add(lineOfOutput);
         }
 
-        private void WrongTokens(int numberOfLine, string TokenText)
+        private static void WrongTokens(int numberOfLine, string TokenText)
         {
             string lineOfOutput = $"Line: {numberOfLine}   Error in Token Text: {TokenText}";
             output.Add(lineOfOutput);
+        }
+        public static List<string> RUN(string input)
+        {
+            int LineNumber = 1;
+            List<string> lines = new List<string>();
+            string s = "";
+            for (int x = 0; x < input.Length; x++)
+            {
+                if (input[x] == '\n')
+                {
+                    lines.Add(s);
+                    s = "";
+                    continue;
+                }
+                s += input[x];
+            }
+            if (s.Length != 0) lines.Add(s);
+            foreach (string line in lines)
+            {
+                CheckLine(line, 0, LineNumber);
+                ++LineNumber;
+            }
+            return output;
         }
     }
 }
