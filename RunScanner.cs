@@ -1,326 +1,183 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace CompilerProject
+namespace CompilerWithTrie
 {
     public class RunScanner
     {
-        public static DFA dfa = new DFA();
-        private static Dictionary<string, string> tokensReturn = new Dictionary<string, string>();
-        private static Dictionary<Tuple<int, char>, int> transTable = new Dictionary<Tuple<int, char>, int>();
+        private int multiComment = 0;
+        private const int MAX = 54;
+        private string[] KeyWords = new string[MAX];
+        private string[] ReturnToken = new string[MAX];
+        public int numberOfErrors = 0;
+        public DFA dfa = new DFA();
 
-        public static void BuildingTransTable()
+        private void DefineKeywords()
+
         {
-            transTable[new Tuple<int, char>(1, 'C')] = 26;
-            transTable[new Tuple<int, char>(1, 'D')] = 2;
-            transTable[new Tuple<int, char>(1, 'E')] = 90;
-            transTable[new Tuple<int, char>(1, 'I')] = 54;
-            transTable[new Tuple<int, char>(1, 'L')] = 8;
-            transTable[new Tuple<int, char>(1, 'P')] = 83;
-            transTable[new Tuple<int, char>(1, 'R')] = 60;
-            transTable[new Tuple<int, char>(1, 'S')] = 41;
-            transTable[new Tuple<int, char>(1, 's')] = 109;
-            transTable[new Tuple<int, char>(1, 't')] = 96;
-            transTable[new Tuple<int, char>(1, 'U')] = 78;
-            transTable[new Tuple<int, char>(1, '-')] = 0;
-            transTable[new Tuple<int, char>(1, '+')] = 0;
-            transTable[new Tuple<int, char>(1, '*')] = 0;
-            transTable[new Tuple<int, char>(1, '/')] = 0;
-            transTable[new Tuple<int, char>(1, '&')] = 133;
-            transTable[new Tuple<int, char>(1, '|')] = 135;
-            transTable[new Tuple<int, char>(1, '~')] = 0;
-            transTable[new Tuple<int, char>(1, '<')] = 0;
-            transTable[new Tuple<int, char>(1, '>')] = 0;
-            transTable[new Tuple<int, char>(1, '!')] = 130;
-            transTable[new Tuple<int, char>(1, '=')] = 0;
-            transTable[new Tuple<int, char>(1, '.')] = 0;
-            transTable[new Tuple<int, char>(1, '[')] = 0;
-            transTable[new Tuple<int, char>(1, ']')] = 0;
-            transTable[new Tuple<int, char>(1, '{')] = 0;
-            transTable[new Tuple<int, char>(1, '}')] = 0;
-            transTable[new Tuple<int, char>(1, '\"')] = 0;
-            transTable[new Tuple<int, char>(1, '\'')] = 0;
-            transTable[new Tuple<int, char>(2, 'e')] = 3;
-            transTable[new Tuple<int, char>(3, 'r')] = 4;
-            transTable[new Tuple<int, char>(4, 'i')] = 5;
-            transTable[new Tuple<int, char>(5, 'R')] = 6;
-            transTable[new Tuple<int, char>(6, 'e')] = 0;
-            transTable[new Tuple<int, char>(8, 'l')] = 9;
-            transTable[new Tuple<int, char>(9, 'g')] = 10;
-            transTable[new Tuple<int, char>(10, 'i')] = 11;
-            transTable[new Tuple<int, char>(11, 'c')] = 12;
-            transTable[new Tuple<int, char>(12, 'a')] = 13;
-            transTable[new Tuple<int, char>(13, 'l')] = 0;
-            transTable[new Tuple<int, char>(15, 'n')] = 16;
-            transTable[new Tuple<int, char>(16, 't')] = 17;
-            transTable[new Tuple<int, char>(17, 'i')] = 18;
-            transTable[new Tuple<int, char>(18, 'n')] = 19;
-            transTable[new Tuple<int, char>(19, 'u')] = 20;
-            transTable[new Tuple<int, char>(20, 'e')] = 21;
-            transTable[new Tuple<int, char>(21, 'w')] = 22;
-            transTable[new Tuple<int, char>(22, 'h')] = 23;
-            transTable[new Tuple<int, char>(23, 'e')] = 24;
-            transTable[new Tuple<int, char>(24, 'n')] = 0;
-            transTable[new Tuple<int, char>(26, 'a')] = 27;
-            transTable[new Tuple<int, char>(26, 'h')] = 37;
-            transTable[new Tuple<int, char>(26, 'l')] = 34;
-            transTable[new Tuple<int, char>(27, 't')] = 28;
-            transTable[new Tuple<int, char>(28, 'e')] = 29;
-            transTable[new Tuple<int, char>(29, 'g')] = 30;
-            transTable[new Tuple<int, char>(30, 'o')] = 31;
-            transTable[new Tuple<int, char>(31, 'r')] = 32;
-            transTable[new Tuple<int, char>(32, 'y')] = 0;
-            transTable[new Tuple<int, char>(34, 'o')] = 35;
-            transTable[new Tuple<int, char>(35, 'p')] = 0;
-            transTable[new Tuple<int, char>(37, 'e')] = 38;
-            transTable[new Tuple<int, char>(38, 'c')] = 39;
-            transTable[new Tuple<int, char>(39, 'k')] = 0;
-            transTable[new Tuple<int, char>(41, 'e')] = 47;
-            transTable[new Tuple<int, char>(41, 'i')] = 42;
-            transTable[new Tuple<int, char>(42, 'l')] = 43;
-            transTable[new Tuple<int, char>(43, 'a')] = 44;
-            transTable[new Tuple<int, char>(44, 'p')] = 0;
-            transTable[new Tuple<int, char>(45, 'f')] = 0;
-            transTable[new Tuple<int, char>(47, 'P')] = 52;
-            transTable[new Tuple<int, char>(47, 'r')] = 48;
-            transTable[new Tuple<int, char>(48, 'i')] = 49;
-            transTable[new Tuple<int, char>(49, 'e')] = 50;
-            transTable[new Tuple<int, char>(50, 's')] = 0;
-            transTable[new Tuple<int, char>(52, 'p')] = 0;
-            transTable[new Tuple<int, char>(54, 'f')] = 0;
-            transTable[new Tuple<int, char>(54, 'l')] = 55;
-            transTable[new Tuple<int, char>(55, 'a')] = 56;
-            transTable[new Tuple<int, char>(56, 'p')] = 0;
-            transTable[new Tuple<int, char>(57, 'f')] = 0;
-            transTable[new Tuple<int, char>(60, 'o')] = 61;
-            transTable[new Tuple<int, char>(61, 't')] = 62;
-            transTable[new Tuple<int, char>(62, 'a')] = 63;
-            transTable[new Tuple<int, char>(63, 't')] = 64;
-            transTable[new Tuple<int, char>(64, 'e')] = 65;
-            transTable[new Tuple<int, char>(65, 'w')] = 66;
-            transTable[new Tuple<int, char>(66, 'h')] = 67;
-            transTable[new Tuple<int, char>(67, 'e')] = 68;
-            transTable[new Tuple<int, char>(68, 'n')] = 0;
-            transTable[new Tuple<int, char>(70, 'p')] = 71;
-            transTable[new Tuple<int, char>(71, 'l')] = 72;
-            transTable[new Tuple<int, char>(72, 'y')] = 73;
-            transTable[new Tuple<int, char>(73, 'w')] = 74;
-            transTable[new Tuple<int, char>(74, 'i')] = 75;
-            transTable[new Tuple<int, char>(75, 't')] = 76;
-            transTable[new Tuple<int, char>(76, 'h')] = 0;
-            transTable[new Tuple<int, char>(78, 's')] = 79;
-            transTable[new Tuple<int, char>(79, 'i')] = 80;
-            transTable[new Tuple<int, char>(80, 'n')] = 81;
-            transTable[new Tuple<int, char>(81, 'g')] = 0;
-            transTable[new Tuple<int, char>(83, 'r')] = 84;
-            transTable[new Tuple<int, char>(84, 'o')] = 85;
-            transTable[new Tuple<int, char>(85, 'g')] = 86;
-            transTable[new Tuple<int, char>(86, 'r')] = 87;
-            transTable[new Tuple<int, char>(87, 'a')] = 88;
-            transTable[new Tuple<int, char>(88, 'm')] = 0;
-            transTable[new Tuple<int, char>(90, 'l')] = 93;
-            transTable[new Tuple<int, char>(90, 'n')] = 91;
-            transTable[new Tuple<int, char>(91, 'd')] = 0;
-            transTable[new Tuple<int, char>(93, 's')] = 94;
-            transTable[new Tuple<int, char>(94, 'e')] = 0;
-            transTable[new Tuple<int, char>(96, 'e')] = 97;
-            transTable[new Tuple<int, char>(97, 'r')] = 98;
-            transTable[new Tuple<int, char>(98, 'm')] = 99;
-            transTable[new Tuple<int, char>(99, 'i')] = 100;
-            transTable[new Tuple<int, char>(100, 'n')] = 101;
-            transTable[new Tuple<int, char>(101, 'a')] = 102;
-            transTable[new Tuple<int, char>(102, 't')] = 103;
-            transTable[new Tuple<int, char>(103, 'e')] = 104;
-            transTable[new Tuple<int, char>(104, 't')] = 105;
-            transTable[new Tuple<int, char>(105, 'h')] = 106;
-            transTable[new Tuple<int, char>(106, 'i')] = 107;
-            transTable[new Tuple<int, char>(107, 's')] = 0;
-            transTable[new Tuple<int, char>(109, 'i')] = 110;
-            transTable[new Tuple<int, char>(110, 't')] = 111;
-            transTable[new Tuple<int, char>(111, 'u')] = 112;
-            transTable[new Tuple<int, char>(112, 'a')] = 113;
-            transTable[new Tuple<int, char>(113, 't')] = 114;
-            transTable[new Tuple<int, char>(114, 'i')] = 115;
-            transTable[new Tuple<int, char>(115, 'o')] = 116;
-            transTable[new Tuple<int, char>(116, 'n')] = 117;
-            transTable[new Tuple<int, char>(117, 'o')] = 118;
-            transTable[new Tuple<int, char>(118, 'f')] = 0;
-            transTable[new Tuple<int, char>(120, '=')] = 0;
-            transTable[new Tuple<int, char>(126, '=')] = 0;
-            transTable[new Tuple<int, char>(128, '=')] = 0;
-            transTable[new Tuple<int, char>(130, '=')] = 0;
-            transTable[new Tuple<int, char>(133, '&')] = 0;
-            transTable[new Tuple<int, char>(135, '|')] = 0;
-
+            KeyWords[0] = "Category"; ReturnToken[0] = "Class";
+            KeyWords[1] = "Derive"; ReturnToken[1] = "Inheritance";
+            KeyWords[2] = "If"; ReturnToken[2] = "Condition";
+            KeyWords[3] = "Else"; ReturnToken[3] = "Condition";
+            KeyWords[4] = "Ilap"; ReturnToken[4] = "Integer";
+            KeyWords[5] = "Silap"; ReturnToken[5] = "SInteger";
+            KeyWords[6] = "Clop"; ReturnToken[6] = "Character";
+            KeyWords[7] = "Series"; ReturnToken[7] = "String";
+            KeyWords[8] = "Ilapf"; ReturnToken[8] = "Float";
+            KeyWords[9] = "Silapf"; ReturnToken[9] = "SFloat";
+            KeyWords[10] = "None"; ReturnToken[10] = "Void";
+            KeyWords[11] = "Rotatewhen"; ReturnToken[11] = "Loop";
+            KeyWords[12] = "Continuewhen"; ReturnToken[12] = "Loop";
+            KeyWords[13] = "Replywith"; ReturnToken[13] = "Return";
+            KeyWords[14] = "Seop"; ReturnToken[14] = "Struct";
+            KeyWords[15] = "Check"; ReturnToken[15] = "Switch";
+            KeyWords[16] = "situationof"; ReturnToken[16] = "Switch";
+            KeyWords[17] = "Program"; ReturnToken[17] = "Stat Statement";
+            KeyWords[18] = "End"; ReturnToken[18] = "End Statement";
+            KeyWords[19] = "+"; ReturnToken[19] = "Arithmetic Operation";
+            KeyWords[20] = "-"; ReturnToken[20] = "Arithmetic Operation";
+            KeyWords[21] = "*"; ReturnToken[21] = "Arithmetic Operation";
+            KeyWords[22] = "/"; ReturnToken[22] = "Arithmetic Operation";
+            KeyWords[23] = "&&"; ReturnToken[23] = "Logic operator";
+            KeyWords[24] = "||"; ReturnToken[24] = "Logic operator";
+            KeyWords[25] = "~"; ReturnToken[25] = "Logic operator";
+            KeyWords[26] = "=="; ReturnToken[26] = "relational operator";
+            KeyWords[27] = "<"; ReturnToken[27] = "relational operator";
+            KeyWords[28] = ">"; ReturnToken[28] = "relational operator";
+            KeyWords[29] = "!="; ReturnToken[29] = "relational operator";
+            KeyWords[30] = "<="; ReturnToken[30] = "relational operator";
+            KeyWords[31] = ">="; ReturnToken[31] = "relational operator";
+            KeyWords[32] = "="; ReturnToken[32] = "Assignment operator";
+            KeyWords[33] = "."; ReturnToken[33] = "Access operator";
+            KeyWords[34] = "{"; ReturnToken[34] = "Braces";
+            KeyWords[35] = "}"; ReturnToken[35] = "Braces";
+            KeyWords[36] = "["; ReturnToken[36] = "Braces";
+            KeyWords[37] = "]"; ReturnToken[37] = "Braces";
+            KeyWords[38] = "0"; ReturnToken[38] = "Constant";
+            KeyWords[39] = "1"; ReturnToken[39] = "Constant";
+            KeyWords[40] = "2"; ReturnToken[40] = "Constant";
+            KeyWords[41] = "3"; ReturnToken[41] = "Constant";
+            KeyWords[42] = "4"; ReturnToken[42] = "Constant";
+            KeyWords[43] = "5"; ReturnToken[43] = "Constant";
+            KeyWords[44] = "6"; ReturnToken[44] = "Constant";
+            KeyWords[45] = "7"; ReturnToken[45] = "Constant";
+            KeyWords[46] = "8"; ReturnToken[46] = "Constant";
+            KeyWords[47] = "9"; ReturnToken[47] = "Constant";
+            KeyWords[48] = "\""; ReturnToken[48] = "Quotation Mark";
+            KeyWords[49] = "\'"; ReturnToken[49] = "Quotation Mark";
+            KeyWords[50] = "Using"; ReturnToken[50] = "Inclusion";
+            KeyWords[51] = "("; ReturnToken[51] = "Braces";
+            KeyWords[52] = ")"; ReturnToken[52] = "Braces";
+            KeyWords[53] = "--"; ReturnToken[53] = "Comment";
         }
 
-
-
-        static void Init()
+        private void BuildingDFA()
         {
-            tokensReturn["Category"] = "Class";
-            tokensReturn["Derive"] = "Inheritance";
-            tokensReturn["If"] = "Condition";
-            tokensReturn["Else"] = "Condition";
-            tokensReturn["Ilap"] = "Integer";
-            tokensReturn["Silap"] = "SInteger";
-            tokensReturn["Clop"] = "Character";
-            tokensReturn["Series"] = "String";
-            tokensReturn["Ilapf"] = "Float";
-            tokensReturn["Silapf"] = "SFloat";
-            tokensReturn["None"] = "Void";
-            tokensReturn["Logical"] = "Boolean";
-            tokensReturn["terminatethis"] = "Termination keyword";
-            tokensReturn["Rotatewhen"] = "Loop";
-            tokensReturn["Continuewhen"] = "Loop";
-            tokensReturn["Replywith"] = "Return";
-            tokensReturn["Seop"] = "Struct";
-            tokensReturn["Check"] = "Switch";
-            tokensReturn["Program"] = "Start Statement";
-            tokensReturn["End"] = "End Statement";
-            tokensReturn["+"] = "Plus operator";
-            tokensReturn["-"] = "Minus operator";
-            tokensReturn["*"] = "Multiplication";
-            tokensReturn["/"] = "Division";
-            tokensReturn["&&"] = "Logical AND";
-            tokensReturn["||"] = "Logical OR";
-            tokensReturn["~"] = "Logical NOT";
-            tokensReturn["=="] = "Equality Operator";
-            tokensReturn["="] = "Assignment Operator";
-            tokensReturn[">"] = "Greater Than";
-            tokensReturn["<"] = "Lower Than";
-            tokensReturn[">="] = "Greater Than or Equal";
-            tokensReturn["<="] = "Lower Than Or Equal";
-            tokensReturn["!="] = "Not Equal";
-            tokensReturn["."] = "Dot Operator";
-            tokensReturn["["] = "Open square bracket";
-            tokensReturn["]"] = "close square bracket";
-            tokensReturn["{"] = "open curly bracket";
-            tokensReturn["}"] = "close curly bracket";
-            tokensReturn["Using"] = "Inclusion";
-            tokensReturn["\""] = "Double Quote";
-            tokensReturn["\'"] = "Single Quote";
-            tokensReturn[";"] = "Line Delimeter";
-            tokensReturn["("] = "Open Parenthesis";
-            tokensReturn[")"] = "Close Parenthesis";
-            foreach (var keyword in tokensReturn)
+            for (int i = 0; i < MAX; i++)
             {
-                dfa.Insert(keyword.Key);
+                dfa.AddTransition(KeyWords[i], ReturnToken[i]);
             }
         }
-        static bool startsWith_ORAlpha(string word)
+
+        public RunScanner()
         {
-            return (word[0] == '_' || (word[0] >= 'a' && word[0] <= 'z') || (word[0] >= 'A' && word[0] <= 'Z'));
+            DefineKeywords();
+            BuildingDFA();
         }
-        static bool IsId(string word)
+
+        private static string[] SplitLine(string data, ref int size)
         {
-            if (!startsWith_ORAlpha(word)) return false;
-            for (int i = 0; i < word.Length; i++)
+            string[] tokens = new string[20];
+            size = 0;
+            string currentData = "";
+            foreach (var c in data)
             {
-                if ((!(word[i] >= '0' && word[i] <= '9')) && (!(word[i] >= 'a' && word[i] <= 'z')) && (!(word[i] >= 'A' && word[i] <= 'Z')))
+                if (Char.IsWhiteSpace(c))
                 {
-                    if (word[i] != '_') return false;
-                }
-            }
-            return true;
-        }
-
-        static bool AllDigits(string word)
-        {
-            foreach (var ch in word)
-            {
-                if (ch >= '0' && ch <= '9') continue;
-                else return false;
-            }
-            return true;
-        }
-
-        static string[] SplitWithSpaces(string line, ref int size)
-        {
-            string[] tokens = new string[10];
-            string temp = "";
-            int numberOfTokens = 0;
-            int idx = 0;
-            while (idx < line.Length)
-            {
-                if (line[idx] == ' ' || line[idx] == '\t')
-                {
-                    if (temp != "")
-                    {
-                        tokens[numberOfTokens++] = temp; temp = "";
-                    }
+                    if (String.IsNullOrEmpty(currentData)) continue;
+                    tokens[size++] = currentData;
+                    currentData = "";
                 }
                 else
                 {
-                    temp += line[idx];
+                    currentData += c;
                 }
-                idx++;
             }
-            if (temp != "")
+            if (!string.IsNullOrEmpty(currentData))
             {
-                tokens[numberOfTokens++] = temp; temp = "";
+                tokens[size++] = currentData;
             }
-            size = numberOfTokens;
             return tokens;
         }
 
-        public static void CheckLine(string line)
+        public static List<string> output = new List<string>();
+
+        public void GoMultiComment(string[] tokens, int startIndex, int endIndex, int numberOfLine) 
         {
-            if (line.Length >= 2)
+            for(int x = startIndex; x<endIndex; x++)
             {
-                if (line[0] == line[1] && line[0] == '-')
+                if (tokens[x] == "*>")
                 {
-                    Console.WriteLine($"{line} -> Comment");
+                    multiComment--;
+                    CorrectTokens(numberOfLine, tokens[x], "Comment");
                     return;
                 }
+                CorrectTokens(numberOfLine, tokens[x], "Comment");
             }
+        }
 
-            int size = 0;
-            var words = SplitWithSpaces(line, ref size);
-
-
-
-            for (int x = 0; x < size; x++)
+        public void GoCheckLine(string[] tokens, int startIndex, int endIndex, int numberOfLine)
+        {
+            if(multiComment > 0)
             {
-                var word = words[x];
-                if (word == "")
+                GoMultiComment(tokens, startIndex, endIndex, numberOfLine);
+                return;
+            }
+            bool isComment = false;
+            for (int index = startIndex; index < endIndex; index++)
+            {
+                string Token = dfa.Search(tokens[index]);
+                if (tokens[index] == "<*")
                 {
-                    continue;
+                    multiComment++;
+                    GoMultiComment(tokens, index, endIndex, numberOfLine);
+                    return;
                 }
-                else if (AllDigits(word))
+                if (tokens[index] == "--" || isComment)
                 {
-                    Console.WriteLine($"{word} -> Constant Number");
+                    isComment = true;
+                    
+                    
+                    CorrectTokens(numberOfLine, tokens[index], "Comment");
+
+                    
                 }
-                else if (dfa.Search(word))
+                else if (Token == "-1")
                 {
-                    Console.WriteLine($"{word} -> {tokensReturn[word]}");
+                    ++numberOfErrors;
+                    WrongTokens(numberOfLine, tokens[index]);
                 }
                 else
                 {
-                    if (IsId(word))
-                    {
-                        Console.WriteLine($"{word} -> Identifier");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{word} -> Invalid Token");
-                    }
+                    CorrectTokens(numberOfLine, tokens[index], Token);
                 }
             }
         }
-        public static void Run()
+
+        public void CheckLine(string line, int startIndex, int numberOfLine)
         {
-            Init();
-            string textFile = @"C:\Users\3m\Desktop\one.txt";
-            if (File.Exists(textFile))
-            {
-                string[] lines = File.ReadAllLines(textFile);
-                foreach (var line in lines)
-                {
-                    CheckLine(line);
-                }
-            }
+            int size = 0;
+            var tokens = SplitLine(line, ref size);
+            GoCheckLine(tokens, 0,size,numberOfLine);
+        }
+
+        private void CorrectTokens(int numberOfLine, string TokenText, string TokenType)
+        {
+            string lineOfOutput = $"Line: {numberOfLine}   Token Text: {TokenText}   Token Type: {TokenType}";
+            output.Add(lineOfOutput);
+        }
+
+        private void WrongTokens(int numberOfLine, string TokenText)
+        {
+            string lineOfOutput = $"Line: {numberOfLine}   Error in Token Text: {TokenText}";
+            output.Add(lineOfOutput);
         }
     }
 }

@@ -1,11 +1,11 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    "net6.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    "net6.0": []
   },
   "packageFolders": {
     "C:\\Users\\3m\\.nuget\\packages\\": {}
@@ -13,26 +13,26 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\CompilerProject\\CodeForCompiler.csproj",
-      "projectName": "CodeForCompiler",
-      "projectPath": "D:\\Projects\\CompilerProject\\CodeForCompiler.csproj",
+      "projectUniqueName": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
+      "projectName": "CompilerWithTrie",
+      "projectPath": "D:\\CompilerWithTrie\\CompilerWithTrie.csproj",
       "packagesPath": "C:\\Users\\3m\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\CompilerProject\\obj\\",
+      "outputPath": "D:\\CompilerWithTrie\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\3m\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {}
         }
       },
@@ -43,8 +43,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "imports": [
           "net461",
           "net462",
