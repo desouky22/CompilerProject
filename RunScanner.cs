@@ -82,6 +82,11 @@ namespace CompilerWithTrie
             BuildingDFA();
         }
 
+        public static bool IsWhiteSpace(char c)
+        {
+            return c == ' ' || c == '\t';
+        }
+
         private static string[] SplitLine(string data, ref int size)
         {
             string[] tokens = new string[20];
@@ -89,7 +94,7 @@ namespace CompilerWithTrie
             string currentData = "";
             foreach (var c in data)
             {
-                if (Char.IsWhiteSpace(c))
+                if (IsWhiteSpace(c))
                 {
                     if (String.IsNullOrEmpty(currentData)) continue;
                     tokens[size++] = currentData;
