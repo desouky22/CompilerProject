@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/NewFolder/main.css" rel="stylesheet" />
+    <link href="~/NewFolder/jquery-ui.css" rel="stylesheet" />
+    <link href="~/NewFolder/lib/codemirror.css" rel="stylesheet" />
+    <link href="~/NewFolder/theme/darcula.css" rel="stylesheet" />
+    <title>
+        @if (ViewBag.operation == 1)
+        {
+            string output = "Scanner result";
+            @output;
+        } 
+    </title>
+
+</head>
+<body>
+    <div class='editor_block'>
+        <header class="container-fluid">
+            <ol class='custom_list automatic_row magrined-List'>
+                <li class='_1over6_block'>
+                    <a href="#" class='bordered_link'><button class='custom_btn custom_btn-primary '>main editor</button></a>
+                </li>
+                <li class='_1over6_block'>
+                    <a href="#" class='bordered_link'><button class='custom_btn custom_btn-primary '>upload file</button></a>
+                </li>
+                <li class='_1over2width'>
+                    <h3 class='editor_block_h3'> project2#</h3>
+                </li>
+            </ol>
+        </header>
+        <form method="post" asp-controller="Home" asp-action="ScannOrParse">
+            <div class='container-fluid'>
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-12' style="height: 386px;">
+                            <textarea name="Code" id="Code" cols="135" rows="75" class='form_element' style="height: 386px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='container'>
+                    <div class='row' style="color:white">
+                        <button class='custom_btn custom_btn-primary _1over4block' type='submit' name='scan'>scan</button>
+                        scan<input id="form-control" type="radio" name="operation" value="1" />
+                        parse<input id="form-control" type="radio" name="operation" value="2" />
+                        <button class='custom_btn custom_btn-primary _1over4block' type='button' id='comment_uncomments'>un/comment</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class='block output'>
+            <div class='automatic_row'>
+                <div class='full_block_content' style="height: 386px;">
+                    <textarea name="Code" id="Code_output" cols="135" rows="75" class='form_element' style="height: 386px;" readonly>
+                        @if (!ViewBag.home) { 
+                            @foreach(var item in ViewBag.output)
+                            {
+                                @item
+                            }
+                        }
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="~/NewFolder/js/jquery.js"></script>
+<script src="~/NewFolder/js/bootstrap.js"></script>
+<script src="~/NewFolder/lib/codemirror.js"></script>
+<script src="~/NewFolder/addon/edit/matchbrackets.js"></script>
+<script src="~/NewFolder/addon/edit/matchtags.js"></script>
+<script src="~/NewFolder/addon/edit/closebrackets.js"></script>
+<script src="~/NewFolder/addon/search/searchcursor.js"></script>
+<script src="~/NewFolder/mode/clike/clike.js"></script>
+<script>
+    var myTextArea = document.getElementById("Code");
+    CodeMirror.fromTextArea(myTextArea, {
+        lineNumbers: true,
+        mode: "text/x-csrc",
+        matchBrackets: true,
+        autoCloseBracket: true,
+        closebrackets: true,
+        styleActiveLine: true
+    });
+</script>
+
+
+</html>

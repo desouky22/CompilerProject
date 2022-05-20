@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/NewFolder/main.css" rel="stylesheet" />
+    <link href="~/NewFolder/jquery-ui.css" rel="stylesheet" />
+    <link href="~/NewFolder/lib/codemirror.css" rel="stylesheet" />
+    <link href="~/NewFolder/theme/darcula.css" rel="stylesheet" />
+    <title>Edit Code here</title>
+    <style>
+        .highlight {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class='editor_block'>
+        <header class="container-fluid">
+            <ol class='custom_list automatic_row magrined-List'>
+                <li class='_1over6_block'>
+                    <a href="#" class='bordered_link'><button class='custom_btn custom_btn-primary '>main editor</button></a>
+                </li>
+                <li class='_1over6_block'>
+                    @Html.RouteLink(linkText: "Upload File", routeName: "Upload_file")
+                </li>
+                <li class='_1over2width'>
+                    <h3 class='editor_block_h3'> project2#</h3>
+                </li>
+            </ol>
+        </header>
+        <form method="post" asp-controller="Home" asp-action="ScannOrParse">
+            <div class='container-fluid'>
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-12' style="height: 386px;">
+                            <textarea name="Code" id="Code" cols="135" rows="75" class='form_element Code' style="height: 386px;"oninput="heightlight();">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='container'>
+                    <div class='row' style="color:white">
+                        <button class='custom_btn custom_btn-primary _1over4block' type='submit' name='scan'>scan</button>
+                        scan<input id="form-control" type="radio" name="operation" value="1" />
+                        parse<input id="form-control" type="radio" name="operation" value="2" />
+                        <button class='custom_btn custom_btn-primary _1over4block' type='button' id='comment_uncomments'>un/comment</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class='block output'>
+            <div class='automatic_row'>
+                <div class='full_block_content' style="height: 386px;">
+                    <textarea name="Code" id="Code_output" cols="135" rows="75" class='form_element' style="height: 386px;" readonly>
+                        @if (!ViewBag.home) { 
+                            @foreach(var item in ViewBag.output)
+                            {
+                                @("\n\n");
+                                @Html.Raw("\n")
+                            }
+                        }
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="result"></div>
+</body>
+</html>
+<script src="~/NewFolder/js/jquery.js"></script>
+<script src="~/NewFolder/js/bootstrap.js"></script>
+<script src="~/NewFolder/lib/codemirror.js"></script>
+<script src="~/NewFolder/addon/edit/matchbrackets.js"></script>
+<script src="~/NewFolder/addon/edit/matchtags.js"></script>
+<script src="~/NewFolder/addon/edit/closebrackets.js"></script>
+<script src="~/NewFolder/mode/clike/clike.js"></script>
+<script src="~/NewFolder/addon/search/searchcursor.js"></script>
+<script>
+    var myTextArea = document.getElementById("Code");
+    var Code=CodeMirror.fromTextArea(myTextArea, {
+        lineNumbers: true,
+        mode: "text/x-csrc",
+        matchBrackets: true,
+        autoCloseBracket: true,
+        closebrackets: true,
+        styleActiveLine: true
+        //parserfile: "codemirror/contrib/sql/js/parsesql.js"
+    });
+    function search(val) {
+        var cursor = Code.getSearchCursor(val);
+        while (cursor.findNext()) {
+            Code.markText(
+                cursor.from(),
+                cursor.to(),
+                { className: 'highlight' }
+            );
+            console.log('found at line ', cursor.pos.from.line + 1);
+        }
+    }
+    function heightligth() {
+        var report = $("#result").html().split("<br>");
+        var re = /Line: [0-9]*   Error/
+        var i = 0;
+        for (i = 0; i < report.length; i++) {
+            if (report[i].match(re)) {
+                var temp = report[i].substring(report[i].lastIndexOf(":"), report[i].length);
+                temp = temp.replace(": ","");
+                console.log(temp);
+                search(temp)
+            }
+        }
+    }
+    //Code.on("change", function ()
+    //{
+    //    $.ajax({
+    //        url: "check_code/",
+    //        type: "POST",
+    //        data: { code: Code.getDoc().getValue() },
+    //        success: function (data) {
+    //            console.log(data);
+    //            $("#result").html(data);
+    //            heightligth();
+    //        },
+    //        failure: function () { alert("check the internet connection");}
+    //    });
+    //});
+    
+</script>

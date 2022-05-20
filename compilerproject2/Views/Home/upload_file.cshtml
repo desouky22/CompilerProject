@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/NewFolder/main.css" rel="stylesheet" />
+    <title>Edit Code here</title>
+</head>
+<body>
+    <div class='editor_block'>
+        <header class="block">
+            <ol class='custom_list automatic_row magrined-List'>
+                <li class='_1over6_block'>
+                    @Html.RouteLink(linkText: "main editor", routeName: "default", routeValues: new { controller = "section", action = "Index", id = 123 })
+                </li>
+                <li class='_1over6_block'>
+                    <a href="#" class='bordered_link'><button class='custom_btn custom_btn-primary '>upload file<!-- لينك لصحفة upload file--></button></a>
+                </li>
+                <li class='_1over2width'>
+                    <h3 class='editor_block_h3'> project2#</h3>
+                </li>
+            </ol>
+        </header>
+        <form method="post" asp-controller="Home" asp-action="Upload_file">
+            <input type="hidden" name="Code" value="" id="READ_CODE" />
+            <div class='block automatic_row'>
+                <div class='automatic_row upload_file'>
+                    <div class='full_block_content '>
+                        <input type="file" id="selectedFile" style="display: none;" />
+                        <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
+                    </div>
+                </div>
+                <div class='block  automatic_row edit_buttons'>
+                    <button class='custom_btn custom_btn-primary _1over4block' type='submit' name='scan'>scan</button>
+                    scan<input id="form-control" type="radio" name="operation" value="1" style="color:white" />
+                    parse<input id="form-control" type="radio" name="operation" value="2" style="color:white" />
+                </div>
+            </div>
+        </form>
+        <div class='block output'>
+            <div class='automatic_row'>
+                <div class='full_block_content' style="height: 386px;">
+                    <textarea name="Code" id="Code" cols="135" rows="75" class='form_element' style="height: 386px;">
+                        @if (ViewBag.home==false) { 
+                            @foreach(var item in ViewBag.output)
+                            {
+                                @item
+                            }
+                        }
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="~/NewFolder/main.js"></script>
+<script type="text/javascript">
+    document.getElementById('selectedFile').addEventListener('change', function () {
+
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById('READ_CODE').value = fr.result;
+        }
+        alert(fr.readAsText(this.files[0]));
+
+    })
+</script>
