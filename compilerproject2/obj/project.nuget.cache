@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lQidVOGazW72l6qp/oXoZZpXNe+rWbi7auFvGsAbDTsAoK3PQ3zsXVOSCPhEafgA3PAmhLRHk0y/6N870ebTsg==",
+  "dgSpecHash": "2j7DUosX1b2/ayZFEQK0iL5P3t18n28gb3ANX5Dcy1Cjv46Jf19dWya36xgCZpyfeunHmkpveLA2I9W0PZ3JvQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\3m\\Desktop\\compilerproject2\\compilerproject2\\compilerproject2\\compilerproject2.csproj",
+  "projectFilePath": "D:\\Projects\\CompilerProject\\compilerproject2\\compilerproject2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\3m\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\3m\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

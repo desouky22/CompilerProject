@@ -6237,11 +6237,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\3m\\Desktop\\compilerproject2\\compilerproject2\\compilerproject2\\compilerproject2.csproj",
+      "projectUniqueName": "D:\\Projects\\CompilerProject\\compilerproject2\\compilerproject2.csproj",
       "projectName": "compilerproject2",
-      "projectPath": "C:\\Users\\3m\\Desktop\\compilerproject2\\compilerproject2\\compilerproject2\\compilerproject2.csproj",
+      "projectPath": "D:\\Projects\\CompilerProject\\compilerproject2\\compilerproject2.csproj",
       "packagesPath": "C:\\Users\\3m\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\3m\\Desktop\\compilerproject2\\compilerproject2\\compilerproject2\\obj\\",
+      "outputPath": "D:\\Projects\\CompilerProject\\compilerproject2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\3m\\AppData\\Roaming\\NuGet\\NuGet.Config",
